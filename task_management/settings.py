@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'silk',
     'django_extensions',
     'rest_framework',
-
+    'drf_yasg',
     'boards',
     'cards',
     'members',
@@ -83,18 +83,19 @@ WSGI_APPLICATION = 'task_management.wsgi.application'
 # Database
 # It is a good practice to store any credentials in separate and secure files or variables instead in the source code
 DATABASE_USER = os.environ.get("TASK_MANAGER_DB_USER", 'postgres')
-DATABASE_PASSWORD = os.environ.get("TASK_MANAGER_DB_PASSWORD", 'muhit9845')
+DATABASE_PASSWORD = os.environ.get("TASK_MANAGER_DB_PASSWORD", '12345era')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'task_db',
+        'NAME': 'task',
         'USER': DATABASE_USER,
         'PASSWORD': DATABASE_PASSWORD,
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
 
 
 # Password validation

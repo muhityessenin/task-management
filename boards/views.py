@@ -9,14 +9,13 @@ from .serializers.lists_serializers import ListSerializer
 
 class BoardViewSet(viewsets.ModelViewSet):
     """
-    ViewSet to provide CRUD functionality for Board model
+    API endpoint to create, retrieve, update, and delete Boards.
     """
     serializer_class = BoardSerializer
 
     def get_queryset(self):
-        """
-        Can be adjusted to filter boards more precisely
-        :return: QuerySet
+        """"
+        Optionally filter the returned boards.
         """
         return Board.objects.all()
 
@@ -29,21 +28,19 @@ class ListViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Can be adjusted to filter lists more precisely
-        :return: QuerySet
-        """
+    API endpoint to manage Lists within Boards.
+    """
         return List.objects.all()
 
 
 class LabelViewSet(viewsets.ModelViewSet):
     """
-    ViewSet to provide CRUD functionality for Label model
+    API endpoint to manage Lists within Boards.
     """
     serializer_class = LabelSerializer
 
     def get_queryset(self):
         """
-        Can be adjusted to filter labels more precisely
-        :return: QuerySet
-        """
+    API endpoint to manage Labels for tasks/cards.
+       """
         return Label.objects.all()
