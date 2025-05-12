@@ -98,6 +98,9 @@ DATABASES = {
     }
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://task-management-m0ig.onrender.com",
+]
 
 
 # Password validation
