@@ -87,11 +87,14 @@ WSGI_APPLICATION = 'task_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'final'),
-        'USER': os.environ.get('POSTGRES_USER', 'asset01'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'piko0101m'),
-        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'NAME': 'nazar_e_holding',
+        'USER': 'root',
+        'PASSWORD': 'orA9ds4pVSIrYvoCQBR8TFOuh1dMfVrc',
+        'HOST': 'dpg-d0fm0ljuibrs73ernqa0-a.oregon-postgres.render.com',
         'PORT': '5432',
+        'OPTIONS': {
+           'sslmode': 'require'
+        }
     }
 }
 
