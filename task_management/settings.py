@@ -25,7 +25,7 @@ SECRET_KEY = 'x@x%9+3dy_z8uax)orz!*4i*ha6k3b2%&yx-x&sn^i3^_)^ic!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,16 +82,15 @@ WSGI_APPLICATION = 'task_management.wsgi.application'
 
 # Database
 # It is a good practice to store any credentials in separate and secure files or variables instead in the source code
-DATABASE_USER = os.environ.get("TASK_MANAGER_DB_USER", 'postgres')
-DATABASE_PASSWORD = os.environ.get("TASK_MANAGER_DB_PASSWORD", '12345era')
+
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'task',
-        'USER': DATABASE_USER,
-        'PASSWORD': DATABASE_PASSWORD,
-        'HOST': 'localhost',
+        'NAME': os.environ.get('POSTGRES_DB', 'final'),
+        'USER': os.environ.get('POSTGRES_USER', 'asset01'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'piko0101m'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
         'PORT': '5432',
     }
 }
@@ -129,7 +128,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
@@ -153,3 +152,23 @@ REST_FRAMEWORK = {
     }
 
 }
+MINIO_STORAGE_MEDIA_URL = "http://minio:9000/media/"
+
+STATICFILES_STORAGE = 'minio_storage.storage.MinioStaticStorage'
+MINIO_STORAGE_MEDIA_BACKUP = False
+
+DEFAULT_FILE_STORAGE = 'minio_storage.storage.MinioMediaStorage'
+
+MINIO_STORAGE_ENDPOINT = "minio:9000"
+MINIO_STORAGE_ACCESS_KEY = os.getenv('MINIO_ROOT_USER', 'admin')
+MINIO_STORAGE_SECRET_KEY = os.getenv('MINIO_ROOT_PASSWORD', 'piko0101m')
+MINIO_STORAGE_USE_HTTPS = False
+MINIO_STORAGE_STATIC_USE_HTTPS = False
+MINIO_STORAGE_MEDIA_BUCKET_NAME = 'media'
+MINIO_STORAGE_STATIC_BUCKET_NAME = 'static'
+MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
+MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = "/profile/"
+LOGOUT_REDIRECT_URL = "/accounts/login/"
